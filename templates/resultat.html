@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Résultat - PadelRank</title>
+    <link rel="icon" type="image/png"
+      href="{{ url_for('static', filename='images/logo1.png') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+    <!-- ========================= -->
+    <!-- BARRE DE NAVIGATION -->
+    <!-- ========================= -->
+
+    <header class="navbar">
+
+        <div class="logo">
+            Padel<span>Rank</span>
+        </div>
+
+        <nav>
+
+            <a href="/">
+                Accueil
+            </a>
+
+            <a href="/simulation">
+                Simulateur
+            </a>
+
+            <a href="/classement">Classement</a>
+
+            <a href="#">
+                À propos
+            </a>
+
+        </nav>
+
+        {% if session.get("utilisateur_id") %}
+
+<a href="/mon-compte" class="connexion">
+     {{ session.get("utilisateur_nom") }}
+</a>
+
+{% else %}
+
+<a href="/connexion" class="connexion">
+    Se connecter
+</a>
+
+{% endif %}
+
+    </header>
+
+
+    <!-- ========================= -->
+    <!-- PAGE RÉSULTAT -->
+    <!-- ========================= -->
+
+    <main class="resultat-page">
+
+        <div class="resultat-container">
+
+
+            <p class="sur-titre">🎾 RÉSULTAT DE TA SIMULATION</p>
+
+            <h1>
+                {{ joueur["prenom"] }} {{ joueur["nom"] }}
+            </h1>
+
+            <p class="resultat-intro">
+                Ton tournoi est simulé ! Voici l'évolution de tes points.
+            </p>
+
+
+            <!-- ========================= -->
+            <!-- CARTE PRINCIPALE -->
+            <!-- ========================= -->
+
+            <div class="resultat-card">
+
+
+                <div class="resultat-ancien">
+
+                    <span>
+                        Points actuels
+                    </span>
+
+                    <strong>
+                        {{ points|int }}
+                    </strong>
+
+                </div>
+
+
+                <div class="fleche-resultat">
+                    →
+                </div>
+
+
+                <div class="resultat-total">
+
+                    <span>
+                        Nouveau total
+                    </span>
+
+                    <strong>
+                        {{ nouveau_total|int }}
+                    </strong>
+
+                </div>
+
+
+                <!-- ========================= -->
+                <!-- POINTS GAGNÉS -->
+                <!-- ========================= -->
+
+                <div class="points-gagnes">
+
+                    <span>
+                        Points gagnés
+                    </span>
+
+                    <strong>
+                        +{{ points_gagnes }}
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- DÉTAILS DU TOURNOI -->
+            <!-- ========================= -->
+
+            <div class="details-tournoi">
+
+
+                <div class="detail">
+
+                    <span>
+                        Tournoi
+                    </span>
+
+                    <strong>
+                        {{ niveau }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <span>
+                        Paires
+                    </span>
+
+                    <strong>
+                        {{ paires }}
+                    </strong>
+
+                </div>
+
+
+                <div class="detail">
+
+                    <span>
+                        Place
+                    </span>
+
+                    <strong>
+                        {{ place }}e
+                    </strong>
+
+                </div>
+
+
+                {% if sexe %}
+
+                <div class="detail">
+
+                    <span>
+                        Épreuve
+                    </span>
+
+                    <strong>
+                        {{ sexe|capitalize }}
+                    </strong>
+
+                </div>
+
+                {% endif %}
+
+
+            </div>
+
+
+            <!-- ========================= -->
+            <!-- BOUTONS -->
+            <!-- ========================= -->
+
+            <div class="resultat-actions">
+
+                <a
+                    href="/simulation"
+                    class="bouton-principal"
+                >
+                    Nouvelle simulation
+                </a>
+
+
+                <a
+                    href="/"
+                    class="bouton-secondaire"
+                >
+                    Retour à l'accueil
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </main>
+
+
+</body>
+
+</html>

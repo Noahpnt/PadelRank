@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Simulation - PadelRank</title>
+    <link rel="icon" type="image/png"
+      href="{{ url_for('static', filename='images/logo1.png') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            Padel<span>Rank</span>
+        </div>
+
+        <nav>
+
+            <a href="/">Accueil</a>
+
+            <a href="/simulation">
+                Simulateur
+            </a>
+
+            <a href="/classement">Classement</a>
+
+            <a href="#">
+                À propos
+            </a>
+
+        </nav>
+
+        {% if session.get("utilisateur_id") %}
+
+<a href="/mon-compte" class="connexion">
+     {{ session.get("utilisateur_nom") }}
+</a>
+
+{% else %}
+
+<a href="/connexion" class="connexion">
+    Se connecter
+</a>
+
+{% endif %}
+
+    </header>
+
+
+    <main class="simulation-page">
+
+        <div class="simulation-container">
+
+            <div class="simulation-title">
+
+                <p class="sur-titre">
+                    🎾 SIMULATEUR
+                </p>
+
+                <h1>
+                    Simule tes points
+                </h1>
+
+                <p>
+                    Renseigne les informations de ton tournoi
+                    pour connaître immédiatement les points FFT
+                    que tu vas gagner.
+                </p>
+
+            </div>
+
+
+            <form method="POST" action="/simulation">
+
+                {% if erreur %}
+    <div class="erreur-formulaire">
+        {{ erreur }}
+    </div>
+{% endif %}
+
+                <div class="form-card">
+
+
+                    <!-- POINTS ACTUELS -->
+
+                    <div class="form-group">
+                        <label for="prenom">Ton prénom</label>
+                        <input
+                            type="text"
+                            id="prenom"
+                            name="prenom"
+                            placeholder="Ex : Thomas"
+                            value="{{ prenom or '' }}"
+                            required
+                        >
+                    </div>
+
+<div class="form-group">
+    <label for="nom">Ton nom</label>
+    <input
+    type="text"
+    id="nom"
+    name="nom"
+    placeholder="Ex : Dupont"
+    value="{{ nom or '' }}"
+    required
+>
+</div>
+
+
+                    <!-- NIVEAU -->
+
+                    <div class="form-group">
+
+                        <label for="niveau">
+                            Niveau du tournoi
+                        </label>
+
+                        <select id="niveau" name="niveau" required>
+
+                            <option value="">
+                                Sélectionne un niveau
+                            </option>
+
+                            <option value="P25">
+                                P25
+                            </option>
+
+                            <option value="P50">
+                                P50
+                            </option>
+
+                            <option value="P100">
+                                P100
+                            </option>
+
+                            <option value="P250">
+                                P250
+                            </option>
+
+                            <option value="P500">
+                                P500
+                            </option>
+
+                            <option value="P1000">
+                                P1000
+                            </option>
+
+                            <option value="P2000">
+                                P2000
+                            </option>
+
+                            <option value="P3000">
+                                P3000
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- NOMBRE DE PAIRES -->
+
+                    <div class="form-group">
+
+                        <label for="paires">
+                            Nombre de paires
+                        </label>
+
+                        <input
+                            type="number"
+                            id="paires"
+                            name="paires"
+                            placeholder="Ex : 32"
+                            min="4"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- PLACE -->
+
+                    <div class="form-group">
+
+                        <label for="place">
+                            Ta place finale
+                        </label>
+
+                        <input
+                            type="number"
+                            id="place"
+                            name="place"
+                            placeholder="Ex : 1"
+                            min="1"
+                            required
+                        >
+
+                        <p id="erreur-place" class="erreur-formulaire"></p>
+
+                    </div>
+
+
+                    <!-- SEXE -->
+
+                    <div
+                        class="form-group"
+                        id="sexe-container"
+                        style="display: none;"
+                    >
+
+                        <label for="sexe">
+                            Type d'épreuve
+                        </label>
+
+                        <select id="sexe" name="sexe">
+
+                            <option value="">
+                                Sélectionne
+                            </option>
+
+                            <option value="messieurs">
+                                Messieurs
+                            </option>
+
+                            <option value="dames">
+                                Dames
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="bouton-calcul"
+>
+                        Calculer mes points
+                    </button>
+
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+    const niveau =
+        document.getElementById("niveau");
+
+    const sexeContainer =
+        document.getElementById("sexe-container");
+
+    niveau.addEventListener("change", function () {
+
+        if (
+            niveau.value === "P500" ||
+            niveau.value === "P1000"
+        ) {
+
+            sexeContainer.style.display = "block";
+
+        } else {
+
+            sexeContainer.style.display = "none";
+
+        }
+
+    });
+
+
+    const paires = document.getElementById("paires");
+const place = document.getElementById("place");
+const erreurPlace = document.getElementById("erreur-place");
+
+function verifierPlace() {
+
+    const nombrePaires = parseInt(paires.value);
+    const placeFinale = parseInt(place.value);
+
+    erreurPlace.textContent = "";
+
+    if (
+        nombrePaires &&
+        placeFinale &&
+        placeFinale > nombrePaires
+    ) {
+
+        erreurPlace.textContent =
+            "⚠️ La place finale ne peut pas être supérieure au nombre de paires.";
+
+        place.setCustomValidity(
+            "La place finale ne peut pas être supérieure au nombre de paires."
+        );
+
+    } else {
+
+        place.setCustomValidity("");
+
+    }
+}
+
+
+paires.addEventListener("input", function () {
+
+    if (paires.value) {
+        place.max = paires.value;
+    } else {
+        place.removeAttribute("max");
+    }
+
+    verifierPlace();
+
+});
+
+
+place.addEventListener("input", verifierPlace);
+</script>
+
+
+</body>
+
+</html>

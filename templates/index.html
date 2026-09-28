@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PadelRank - Simulateur FFT</title>
+    <link rel="icon" type="image/png"
+      href="{{ url_for('static', filename='images/logo1.png') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="PadelRank">
+        </div>
+
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/simulation">Simulateur</a>
+            <a href="/classement">Classement</a>
+            <a href="#">À propos</a>
+        </nav>
+
+        {% if session.get("utilisateur_id") %}
+
+<a href="/mon-compte" class="connexion">
+     {{ session.get("utilisateur_nom") }}
+</a>
+
+{% else %}
+
+<a href="/connexion" class="connexion">
+    Se connecter
+</a>
+
+{% endif %}
+
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-text">
+
+                <p class="sur-titre">
+                    🎾 SIMULATEUR DE CLASSEMENT PADEL
+                </p>
+
+                <h1>
+                    Sache combien de
+                    <span>points FFT</span>
+                    tu vas gagner.
+                </h1>
+
+                <p class="description">
+                    Simule tes points après un tournoi de padel
+                    sans attendre la prochaine mise à jour officielle
+                    du classement.
+                </p>
+
+                <div class="boutons">
+
+                    <a href="/simulation" class="bouton-principal">
+                    Simuler un tournoi
+                    </a>
+
+                    <a href="#" class="bouton-secondaire">
+                        Comment ça marche ?
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="carte-simulation">
+
+                <div class="carte-header">
+                    <span>Exemple de simulation</span>
+                    <span class="point-vert">●</span>
+                </div>
+
+                <div class="points-actuels">
+                    <p>Points actuels</p>
+                    <strong>1 247</strong>
+                </div>
+
+                <div class="fleche">
+                    ↓
+                </div>
+
+                <div class="nouveaux-points">
+                    <p>Après mon tournoi</p>
+                    <strong>1 497</strong>
+                    <span>+250 points</span>
+                </div>
+
+                <div class="mini-info">
+                    <div>
+                        <small>Tournoi</small>
+                        <strong>P250</strong>
+                    </div>
+
+                    <div>
+                        <small>Équipes</small>
+                        <strong>32</strong>
+                    </div>
+
+                    <div>
+                        <small>Place</small>
+                        <strong>1ère</strong>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+                <section class="recherche-accueil">
+
+            <p class="sur-titre">🔎 RECHERCHER UN JOUEUR</p>
+
+            <h2>
+                Retrouve ton profil PadelRank
+            </h2>
+
+            <p>
+                Recherche un joueur avec son prénom ou son nom.
+            </p>
+
+            <form action="/classement" method="GET">
+
+                <input
+                    type="text"
+                    name="recherche"
+                    placeholder="Ex : Thomas Dupont"
+                    required
+                >
+
+                <button type="submit">
+                    Rechercher
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <section class="fonctionnement">
+
+            <p class="sur-titre">SIMPLE ET RAPIDE</p>
+
+            <h2>
+                Comment ça marche ?
+            </h2>
+
+           <div class="etapes">
+
+<div class="etape">
+
+    <div class="numero">01</div>
+
+    <h3>
+        Renseigne ton identité
+    </h3>
+
+    <p>
+        Indique ton prénom et ton nom pour retrouver automatiquement ton profil.
+    </p>
+
+</div>
+
+
+<div class="etape">
+
+    <div class="numero">02</div>
+
+    <h3>
+        Choisis ton tournoi
+    </h3>
+
+    <p>
+        Sélectionne le niveau du tournoi et le nombre de paires engagées.
+    </p>
+
+</div>
+
+
+<div class="etape">
+
+    <div class="numero">03</div>
+
+    <h3>
+        Indique ta place
+    </h3>
+
+    <p>
+        Entre ta position finale dans le tournoi pour calculer les points gagnés.
+    </p>
+
+</div>
+
+
+<div class="etape">
+
+    <div class="numero">04</div>
+
+    <h3>
+        Découvre ton évolution
+    </h3>
+
+    <p>
+        PadelRank calcule tes nouveaux points et les enregistre dans ton profil.
+    </p>
+
+</div>
+
+
+</div>
+
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            © 2026 PadelRank — Simulateur de points FFT
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

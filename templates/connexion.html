@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Connexion - PadelRank</title>
+
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', filename='images/logo.png') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="PadelRank"
+        >
+
+    </div>
+
+
+    <nav>
+
+        <a href="/">
+            Accueil
+        </a>
+
+        <a href="/simulation">
+            Simulateur
+        </a>
+
+        <a href="/classement">
+            Classement
+        </a>
+
+        <a href="#">
+            À propos
+        </a>
+
+    </nav>
+
+
+    <a href="/inscription" class="connexion">
+        Créer un compte
+    </a>
+
+</header>
+
+
+
+<main class="auth-page">
+
+
+    <div class="auth-card">
+
+
+        <div class="auth-logo">
+
+            <img
+                src="{{ url_for('static', filename='images/logo.png') }}"
+                alt="PadelRank"
+            >
+
+        </div>
+
+
+        <div class="auth-header">
+
+            <span class="sur-titre">
+                PADELRANK
+            </span>
+
+            <h1>
+                Se connecter
+            </h1>
+
+            <p>
+                Connecte-toi pour accéder à ton espace joueur.
+            </p>
+
+        </div>
+
+
+        {% if succes %}
+
+        <div class="message-succes">
+            {{ succes }}
+        </div>
+
+        {% endif %}
+
+
+        {% if erreur %}
+
+        <div class="message-erreur">
+            {{ erreur }}
+        </div>
+
+        {% endif %}
+
+
+        <form method="POST">
+
+
+            <div class="form-groupe">
+
+                <label for="email">
+                    Adresse email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="exemple@email.com"
+                    value="{{ email or '' }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-groupe">
+
+                <label for="mot_de_passe">
+                    Mot de passe
+                </label>
+
+                <input
+                    type="password"
+                    id="mot_de_passe"
+                    name="mot_de_passe"
+                    placeholder="••••••••"
+                    required
+                >
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="bouton-principal bouton-auth"
+            >
+                Se connecter
+            </button>
+
+
+        </form>
+
+
+        <div class="auth-footer">
+
+            <p>
+                Pas encore de compte ?
+            </p>
+
+            <a href="/inscription">
+                Créer un compte
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        © 2026 PadelRank — Simulateur de points FFT
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

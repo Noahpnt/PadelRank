@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+padelrank.db
+.env
+.venv/
+venv/

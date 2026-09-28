@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mon compte - PadelRank</title>
+
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', filename='images/logo.png') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <div class="logo">
+
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="PadelRank"
+        >
+
+    </div>
+
+
+    <nav>
+
+        <a href="/">
+            Accueil
+        </a>
+
+        <a href="/simulation">
+            Simulateur
+        </a>
+
+        <a href="/classement">
+            Classement
+        </a>
+
+        <a href="/mon-compte">
+            Mon compte
+        </a>
+
+    </nav>
+
+
+    <a href="/deconnexion" class="connexion">
+        Déconnexion
+    </a>
+
+</header>
+
+
+
+<main class="compte-page">
+
+
+    <div class="compte-container">
+
+
+        <div class="compte-header">
+
+            <div class="compte-avatar">
+
+                {{ utilisateur["prenom"][0] }}
+
+            </div>
+
+
+            <div>
+
+                <span class="sur-titre">
+                    MON ESPACE
+                </span>
+
+                <h1>
+                    Bonjour {{ utilisateur["prenom"] }} 👋
+                </h1>
+
+                <p>
+                    Bienvenue sur ton espace personnel PadelRank.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="compte-card">
+
+
+            <h2>
+                Informations personnelles
+            </h2>
+
+
+            <div class="infos-compte">
+
+
+                <div>
+
+                    <span>
+                        Prénom
+                    </span>
+
+                    <strong>
+                        {{ utilisateur["prenom"] }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Nom
+                    </span>
+
+                    <strong>
+                        {{ utilisateur["nom"] }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Email
+                    </span>
+
+                    <strong>
+                        {{ utilisateur["email"] }}
+                    </strong>
+
+                </div>
+
+
+                <div>
+
+                    <span>
+                        Compte créé le
+                    </span>
+
+                    <strong>
+                        {{ utilisateur["date_creation"] }}
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="compte-actions">
+
+
+            <a
+                href="/simulation"
+                class="bouton-principal"
+            >
+                🎾 Faire une simulation
+            </a>
+
+
+            <a
+                href="/classement"
+                class="bouton-secondaire"
+            >
+                🏆 Voir le classement
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        © 2026 PadelRank — Simulateur de points FFT
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
