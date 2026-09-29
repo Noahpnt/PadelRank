@@ -1,3 +1,9 @@
+/* =========================================================
+   PADELRANK
+   Simulateur de points FFT
+   ========================================================= */
+
+
 * {
     margin: 0;
     padding: 0;
@@ -7,451 +13,66 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+
     background: #f7f9fc;
+
     color: #101828;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
 }
 
 
-/* =========================
+/* =========================================================
    NAVBAR
-========================= */
+   ========================================================= */
 
 .navbar {
-    height: 75px;
+
+    height: 95px;
+
     background: white;
 
+    border-bottom: 1px solid #eaecf0;
+
     display: flex;
+
     align-items: center;
 
     padding: 0 7%;
-
-    border-bottom: 1px solid #e8ecf2;
 }
 
 
 .logo {
-    font-size: 25px;
-    font-weight: 800;
-
-    margin-right: auto;
-}
-
-
-.logo span {
-    color: #1683ff;
-}
-
-
-nav {
-    display: flex;
-    gap: 35px;
-}
-
-
-nav a {
-    text-decoration: none;
-    color: #475467;
-
-    font-size: 15px;
-    font-weight: 600;
-}
-
-
-nav a:hover {
-    color: #1683ff;
-}
-
-
-.connexion {
-    margin-left: 40px;
-
-    background: #1683ff;
-    color: white;
-
-    border: none;
-    border-radius: 8px;
-
-    padding: 11px 20px;
-
-    font-weight: 600;
-
-    cursor: pointer;
-}
-
-
-.connexion:hover {
-    background: #0969da;
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero {
-    min-height: 620px;
 
     display: flex;
+
     align-items: center;
-    justify-content: space-between;
 
-    gap: 80px;
-
-    padding: 80px 10%;
-}
-
-
-.hero-text {
-    max-width: 600px;
-}
-
-
-.sur-titre {
-    color: #1683ff;
-
-    font-size: 13px;
-    font-weight: 800;
-
-    letter-spacing: 1.5px;
-
-    margin-bottom: 20px;
-}
-
-
-.hero h1 {
-    font-size: 56px;
-    line-height: 1.08;
-
-    margin-bottom: 25px;
-}
-
-
-.hero h1 span {
-    color: #1683ff;
-}
-
-
-.description {
-    color: #667085;
-
-    font-size: 18px;
-    line-height: 1.6;
-
-    max-width: 520px;
-
-    margin-bottom: 35px;
-}
-
-
-/* =========================
-   BOUTONS
-========================= */
-
-.boutons {
-    display: flex;
-    gap: 15px;
-}
-
-
-.bouton-principal,
-.bouton-secondaire {
     text-decoration: none;
-
-    padding: 14px 23px;
-
-    border-radius: 8px;
-
-    font-weight: 700;
 }
 
 
-.bouton-principal {
-    background: #1683ff;
-    color: white;
-}
+.logo img {
 
+    height: 100px;
 
-.bouton-principal:hover {
-    background: #0969da;
-}
+    width: auto;
 
-
-.bouton-secondaire {
-    background: white;
-    color: #344054;
-
-    border: 1px solid #d0d5dd;
-}
-
-
-.bouton-secondaire:hover {
-    background: #f2f4f7;
-}
-
-
-/* =========================
-   CARTE SIMULATION
-========================= */
-
-.carte-simulation {
-    width: 380px;
-
-    background: white;
-
-    border-radius: 18px;
-
-    padding: 30px;
-
-    box-shadow: 0 20px 50px rgba(16, 24, 40, 0.10);
-
-    border: 1px solid #eaecf0;
-}
-
-
-.carte-header {
-    display: flex;
-    justify-content: space-between;
-
-    font-weight: 700;
-
-    margin-bottom: 30px;
-}
-
-
-.point-vert {
-    color: #12b76a;
-}
-
-
-.points-actuels p,
-.nouveaux-points p {
-    color: #667085;
-
-    font-size: 14px;
-
-    margin-bottom: 5px;
-}
-
-
-.points-actuels strong {
-    font-size: 35px;
-}
-
-
-.fleche {
-    text-align: center;
-
-    color: #98a2b3;
-
-    font-size: 25px;
-
-    margin: 12px 0;
-}
-
-
-.nouveaux-points strong {
     display: block;
 
-    font-size: 40px;
-
-    margin-bottom: 5px;
 }
 
 
-.nouveaux-points span {
-    color: #12b76a;
-
-    font-weight: 700;
-
-    font-size: 14px;
-}
-
-
-.mini-info {
-    display: flex;
-
-    justify-content: space-between;
-
-    border-top: 1px solid #eaecf0;
-
-    margin-top: 25px;
-
-    padding-top: 20px;
-}
-
-
-.mini-info div {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 5px;
-}
-
-
-.mini-info small {
-    color: #98a2b3;
-}
-
-
-.mini-info strong {
-    font-size: 15px;
-}
-
-
-/* =========================
-   FONCTIONNEMENT
-========================= */
-
-.fonctionnement {
-    background: white;
-
-    padding: 80px 10%;
-
-    text-align: center;
-}
-
-
-.fonctionnement h2 {
-    font-size: 38px;
-
-    margin-bottom: 55px;
-}
-
-
-.etapes {
-    display: grid;
-
-    grid-template-columns: repeat(4, 1fr);
-
-    gap: 35px;
-}
-
-
-.etape {
-    text-align: left;
-}
-
-
-.numero {
-    color: #1683ff;
-
-    font-size: 14px;
-    font-weight: 800;
-
-    margin-bottom: 15px;
-}
-
-
-.etape h3 {
-    font-size: 19px;
-
-    margin-bottom: 10px;
-}
-
-
-.etape p {
-    color: #667085;
-
-    line-height: 1.5;
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-    background: #101828;
-
-    color: #98a2b3;
-
-    text-align: center;
-
-    padding: 25px;
-
-    font-size: 14px;
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 900px) {
-
-    nav {
-        display: none;
-    }
-
-
-    .hero {
-        flex-direction: column;
-
-        text-align: center;
-
-        padding: 60px 5%;
-    }
-
-
-    .hero-text {
-        max-width: 700px;
-    }
-
-
-    .description {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-
-    .boutons {
-        justify-content: center;
-    }
-
-
-    .etapes {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-
-@media (max-width: 600px) {
-
-    .navbar {
-        padding: 0 5%;
-    }
-
-
-    .connexion {
-        margin-left: 15px;
-
-        padding: 9px 12px;
-    }
-
-
-    .hero h1 {
-        font-size: 40px;
-    }
-
-
-    .carte-simulation {
-        width: 100%;
-    }
-
-
-    .etapes {
-        grid-template-columns: 1fr;
-    }
-
-}
-/* =========================
+/* =========================================================
    PAGE SIMULATION
-========================= */
+   ========================================================= */
 
 .simulation-page {
-    min-height: calc(100vh - 75px);
+
+    flex: 1;
 
     display: flex;
 
@@ -462,52 +83,89 @@ footer {
 
 
 .simulation-container {
+
     width: 100%;
-    max-width: 650px;
+
+    max-width: 620px;
 }
 
 
+/* =========================================================
+   TITRE
+   ========================================================= */
+
 .simulation-title {
+
     text-align: center;
 
     margin-bottom: 35px;
 }
 
 
+.sur-titre {
+
+    color: #1683ff;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 12px;
+}
+
+
 .simulation-title h1 {
+
     font-size: 42px;
+
+    line-height: 1.1;
 
     margin-bottom: 15px;
 }
 
 
-.simulation-title > p:last-child {
+.simulation-title p:last-child {
+
     color: #667085;
+
+    font-size: 17px;
 
     line-height: 1.6;
 }
 
 
+/* =========================================================
+   FORMULAIRE
+   ========================================================= */
+
 .form-card {
+
     background: white;
-
-    padding: 35px;
-
-    border-radius: 18px;
 
     border: 1px solid #eaecf0;
 
-    box-shadow: 0 15px 40px rgba(16, 24, 40, 0.08);
+    border-radius: 20px;
+
+    padding: 35px;
+
+    box-shadow:
+        0 15px 40px rgba(16, 24, 40, 0.08);
 }
 
 
 .form-group {
+
     margin-bottom: 23px;
 }
 
 
 .form-group label {
+
     display: block;
+
+    font-size: 14px;
 
     font-weight: 700;
 
@@ -517,38 +175,64 @@ footer {
 
 .form-group input,
 .form-group select {
+
     width: 100%;
 
-    padding: 14px 15px;
+    height: 50px;
+
+    padding: 0 15px;
 
     border: 1px solid #d0d5dd;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
-    font-size: 16px;
+    background: white;
+
+    color: #101828;
+
+    font-size: 15px;
 
     outline: none;
 
-    background: white;
+    transition: 0.2s;
 }
 
 
 .form-group input:focus,
 .form-group select:focus {
+
     border-color: #1683ff;
 
-    box-shadow: 0 0 0 3px rgba(22, 131, 255, 0.12);
+    box-shadow:
+        0 0 0 3px rgba(22, 131, 255, 0.12);
 }
 
 
+.form-group small {
+
+    display: block;
+
+    margin-top: 7px;
+
+    color: #98a2b3;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   BOUTON
+   ========================================================= */
+
 .bouton-calcul {
+
     width: 100%;
 
-    padding: 15px;
+    height: 52px;
 
     border: none;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
     background: #1683ff;
 
@@ -559,1856 +243,327 @@ footer {
     font-weight: 700;
 
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
 
 .bouton-calcul:hover {
+
     background: #0969da;
+
+    transform: translateY(-1px);
 }
 
 
-/* =========================
+/* =========================================================
+   ERREUR
+   ========================================================= */
+
+.erreur-formulaire {
+
+    margin-bottom: 20px;
+
+    padding: 14px 16px;
+
+    background: #fff4f2;
+
+    border: 1px solid #fecdca;
+
+    border-radius: 9px;
+
+    color: #b42318;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
    PAGE RÉSULTAT
-========================= */
+   ========================================================= */
 
 .resultat-page {
-    min-height: calc(100vh - 75px);
+
+    flex: 1;
 
     display: flex;
 
     justify-content: center;
-
-    text-align: center;
 
     padding: 70px 20px;
 }
 
 
 .resultat-container {
+
     width: 100%;
 
-    max-width: 650px;
+    max-width: 700px;
+
+    text-align: center;
 }
 
 
 .resultat-container h1 {
+
     font-size: 42px;
 
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 
+/* =========================================================
+   CARTE DU RÉSULTAT
+   ========================================================= */
+
 .resultat-card {
+
     background: white;
-
-    border-radius: 18px;
-
-    padding: 35px;
 
     border: 1px solid #eaecf0;
 
-    box-shadow: 0 15px 40px rgba(16, 24, 40, 0.08);
+    border-radius: 20px;
+
+    padding: 45px 30px;
+
+    box-shadow:
+        0 15px 40px rgba(16, 24, 40, 0.08);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
 }
 
 
-.resultat-ancien p,
-.resultat-gagnes p,
-.resultat-total p {
+.resultat-label {
+
     color: #667085;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    margin-bottom: 12px;
+}
+
+
+.points-resultat {
+
+    color: #1683ff;
+
+    font-size: 64px;
+
+    line-height: 1;
 
     margin-bottom: 8px;
 }
 
 
-.resultat-ancien strong {
-    font-size: 35px;
-}
-
-
-.plus {
-    font-size: 30px;
+.resultat-description {
 
     color: #98a2b3;
 
-    margin: 10px;
-}
-
-
-.resultat-gagnes strong {
-    font-size: 40px;
-
-    color: #12b76a;
-}
-
-
-.ligne {
-    height: 1px;
-
-    background: #eaecf0;
-
-    margin: 25px 0;
-}
-
-
-.resultat-total strong {
-    display: block;
-
-    font-size: 48px;
-
-    color: #1683ff;
-}
-
-
-.details-tournoi {
-    display: flex;
-
-    justify-content: space-between;
-
-    margin: 25px 0 35px;
-
-    padding: 20px;
-
-    background: white;
-
-    border-radius: 12px;
-
-    border: 1px solid #eaecf0;
-}
-
-
-.details-tournoi div {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 6px;
-}
-
-
-.details-tournoi span {
-    color: #98a2b3;
-
-    font-size: 13px;
-}
-
-
-.details-tournoi strong {
-    font-size: 17px;
-}
-/* ==========================================
-   PAGE RÉSULTAT - PADELRANK
-   ========================================== */
-
-.resultat-page {
-    min-height: calc(100vh - 75px);
-    display: flex;
-    justify-content: center;
-    padding: 70px 20px;
-}
-
-.resultat-container {
-    width: 100%;
-    max-width: 750px;
-    text-align: center;
-}
-
-.resultat-container h1 {
-    font-size: 42px;
-    margin-bottom: 12px;
-}
-
-.resultat-intro {
-    color: #667085;
-    margin-bottom: 35px;
-    font-size: 17px;
-}
-
-.resultat-card {
-    background: white;
-    border: 1px solid #eaecf0;
-    border-radius: 20px;
-    padding: 35px;
-    box-shadow: 0 15px 40px rgba(16, 24, 40, 0.08);
-
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-    gap: 25px;
-
-    position: relative;
-}
-
-.resultat-ancien,
-.resultat-total {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.resultat-ancien span,
-.resultat-total span,
-.points-gagnes span {
-    color: #667085;
     font-size: 14px;
-    font-weight: 600;
-}
-
-.resultat-ancien strong,
-.resultat-total strong {
-    font-size: 32px;
-}
-
-.fleche-resultat {
-    font-size: 30px;
-    color: #98a2b3;
-}
-
-.points-gagnes {
-    grid-column: 1 / 4;
-
-    border-top: 1px solid #eaecf0;
-    padding-top: 25px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.points-gagnes strong {
-    font-size: 38px;
-    color: #1683ff;
 }
 
 
-/* ==========================================
-   DÉTAILS DU TOURNOI
-   ========================================== */
+/* =========================================================
+   DÉTAILS
+   ========================================================= */
 
 .details-tournoi {
-    margin-top: 25px;
+
+    margin-top: 20px;
 
     display: grid;
+
     grid-template-columns: repeat(3, 1fr);
 
     background: white;
+
     border: 1px solid #eaecf0;
+
     border-radius: 15px;
 
     overflow: hidden;
 }
 
+
 .detail {
+
     padding: 20px;
 
     display: flex;
+
     flex-direction: column;
+
     gap: 7px;
 
     border-right: 1px solid #eaecf0;
 }
 
+
 .detail:last-child {
+
     border-right: none;
 }
 
+
 .detail span {
+
     color: #667085;
+
     font-size: 13px;
 }
 
+
 .detail strong {
+
     font-size: 18px;
 }
 
 
-/* ==========================================
-   BOUTONS
-   ========================================== */
+.epreuve-resultat {
+
+    margin-top: 18px;
+
+    color: #667085;
+
+    font-size: 14px;
+}
+
+
+.epreuve-resultat strong {
+
+    color: #101828;
+}
+
+
+/* =========================================================
+   ACTIONS
+   ========================================================= */
 
 .resultat-actions {
+
     margin-top: 30px;
 
     display: flex;
+
     justify-content: center;
-    gap: 15px;
 }
 
-.bouton-principal,
-.bouton-secondaire {
+
+.bouton-principal {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
     text-decoration: none;
-    padding: 14px 22px;
-    border-radius: 8px;
+
+    background: #1683ff;
+
+    color: white;
+
+    padding: 14px 24px;
+
+    border-radius: 9px;
+
     font-weight: 700;
+
     transition: 0.2s;
 }
 
-.bouton-principal {
-    background: #1683ff;
-    color: white;
-}
 
 .bouton-principal:hover {
+
     background: #0969da;
-}
 
-.bouton-secondaire {
-    background: white;
-    color: #344054;
-    border: 1px solid #d0d5dd;
-}
-
-.bouton-secondaire:hover {
-    background: #f9fafb;
+    transform: translateY(-1px);
 }
 
 
-/* ==========================================
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer {
+
+    background: #101828;
+
+    color: #98a2b3;
+
+    text-align: center;
+
+    padding: 22px;
+
+    font-size: 13px;
+
+    margin-top: auto;
+}
+
+
+/* =========================================================
    RESPONSIVE
-   ========================================== */
+   ========================================================= */
 
 @media (max-width: 650px) {
 
+    .navbar {
+
+        padding: 0 20px;
+    }
+
+
+    .simulation-page,
+    .resultat-page {
+
+        padding: 45px 15px;
+    }
+
+
+    .simulation-title h1,
     .resultat-container h1 {
-        font-size: 32px;
-    }
 
-    .resultat-card {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .fleche-resultat {
-        transform: rotate(90deg);
-    }
-
-    .points-gagnes {
-        grid-column: auto;
-    }
-
-    .details-tournoi {
-        grid-template-columns: 1fr;
-    }
-
-    .detail {
-        border-right: none;
-        border-bottom: 1px solid #eaecf0;
-    }
-
-    .detail:last-child {
-        border-bottom: none;
-    }
-
-    .resultat-actions {
-        flex-direction: column;
-    }
-
-}
-.erreur-formulaire {
-    margin-top: 7px;
-    color: #d92d20;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-/* ==========================================
-   PAGE CLASSEMENT
-   ========================================== */
-
-.classement-page {
-    min-height: calc(100vh - 75px);
-    padding: 70px 20px;
-}
-
-.classement-container {
-    max-width: 900px;
-    margin: auto;
-}
-
-.classement-container h1 {
-    font-size: 42px;
-    margin-bottom: 12px;
-}
-
-.classement-intro {
-    color: #667085;
-    font-size: 17px;
-    margin-bottom: 35px;
-}
-
-
-/* CARTE JOUEUR */
-
-.classement-card {
-    background: white;
-    border: 1px solid #eaecf0;
-    border-radius: 18px;
-    padding: 25px 30px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    box-shadow: 0 15px 40px rgba(16, 24, 40, 0.07);
-
-    margin-bottom: 25px;
-}
-
-.joueur-info {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.avatar {
-    width: 55px;
-    height: 55px;
-
-    border-radius: 50%;
-
-    background: #1683ff;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 22px;
-    font-weight: 700;
-}
-
-.joueur-info span,
-.points-joueur span {
-    color: #667085;
-    font-size: 13px;
-}
-
-.joueur-info h2 {
-    margin-top: 4px;
-    font-size: 20px;
-}
-
-.points-joueur {
-    text-align: right;
-
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.points-joueur strong {
-    font-size: 30px;
-    color: #1683ff;
-}
-
-
-/* RECHERCHE */
-
-.recherche-classement {
-    display: flex;
-    gap: 10px;
-
-    margin-bottom: 25px;
-}
-
-.recherche-classement input {
-    flex: 1;
-
-    padding: 14px 15px;
-
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-
-    font-size: 15px;
-}
-
-.recherche-classement button {
-    padding: 14px 22px;
-
-    border: none;
-    border-radius: 8px;
-
-    background: #1683ff;
-    color: white;
-
-    font-weight: 700;
-
-    cursor: pointer;
-}
-
-
-/* TABLEAU */
-
-.tableau-classement {
-    background: white;
-
-    border: 1px solid #eaecf0;
-    border-radius: 15px;
-
-    overflow: hidden;
-}
-
-.ligne-classement {
-    display: grid;
-
-    grid-template-columns: 100px 1fr 150px;
-
-    align-items: center;
-
-    padding: 18px 25px;
-
-    border-bottom: 1px solid #eaecf0;
-}
-
-.ligne-classement:last-child {
-    border-bottom: none;
-}
-
-.ligne-classement.entete {
-    background: #f9fafb;
-
-    color: #667085;
-
-    font-size: 13px;
-    font-weight: 700;
-}
-
-
-/* RESPONSIVE */
-
-@media (max-width: 600px) {
-
-    .classement-card {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
-
-    .points-joueur {
-        text-align: left;
-    }
-
-    .recherche-classement form {
-    flex-direction: column;
-}
-
-    .recherche-classement {
-    margin-bottom: 25px;
-}
-
-.recherche-classement form {
-    display: flex;
-    gap: 10px;
-    width: 100%;
-}
-
-.recherche-classement input {
-    flex: 1;
-    padding: 14px 15px;
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-    font-size: 15px;
-    outline: none;
-    transition: 0.2s;
-}
-
-.recherche-classement input:focus {
-    border-color: #1683ff;
-    box-shadow: 0 0 0 3px rgba(22, 131, 255, 0.1);
-}
-
-.recherche-classement button {
-    padding: 14px 22px;
-    border: none;
-    border-radius: 8px;
-    background: #1683ff;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.recherche-classement button:hover {
-    background: #0969da;
-}
-
-    .ligne-classement {
-        grid-template-columns: 60px 1fr 100px;
-        padding: 15px;
-    }
-
-}
-
-/* ==========================================
-   PAGE PROFIL JOUEUR
-   ========================================== */
-
-.joueur-page {
-    min-height: calc(100vh - 75px);
-    padding: 70px 20px;
-}
-
-.joueur-container {
-    max-width: 900px;
-    margin: auto;
-}
-
-.joueur-container h1 {
-    font-size: 42px;
-    margin-bottom: 35px;
-}
-
-
-/* ==========================================
-   CARTE PROFIL
-   ========================================== */
-
-.profil-card {
-    background: white;
-    border: 1px solid #eaecf0;
-    border-radius: 20px;
-    padding: 35px;
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    box-shadow: 0 15px 40px rgba(16, 24, 40, 0.07);
-}
-
-
-.avatar-grand {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-
-    background: #1683ff;
-    color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    font-size: 36px;
-    font-weight: 700;
-}
-
-
-.profil-info {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-}
-
-
-.profil-info span {
-    color: #667085;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-
-.profil-info h2 {
-    font-size: 28px;
-}
-
-
-.profil-info p {
-    color: #667085;
-    font-size: 15px;
-}
-
-
-/* ==========================================
-   STATISTIQUES
-   ========================================== */
-
-.statistiques-joueur {
-    margin-top: 25px;
-
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-
-    gap: 20px;
-}
-
-
-.stat-card {
-    background: white;
-    border: 1px solid #eaecf0;
-    border-radius: 16px;
-
-    padding: 25px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
-    box-shadow: 0 10px 30px rgba(16, 24, 40, 0.05);
-}
-
-
-.stat-card span {
-    color: #667085;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-
-.stat-card strong {
-    font-size: 27px;
-    color: #1683ff;
-}
-
-
-/* ==========================================
-   BOUTON RETOUR
-   ========================================== */
-
-.retour-classement {
-    margin-top: 30px;
-}
-
-
-.retour-classement .bouton-principal {
-    display: inline-block;
-}
-
-
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
-
-@media (max-width: 700px) {
-
-    .joueur-container h1 {
         font-size: 32px;
     }
 
 
-    .profil-card {
-        padding: 25px;
+    .form-card {
 
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-
-    .statistiques-joueur {
-        grid-template-columns: 1fr;
-    }
-
-
-    .avatar-grand {
-        width: 75px;
-        height: 75px;
-
-        font-size: 30px;
-    }
-
-
-    .profil-info h2 {
-        font-size: 23px;
-    }
-
-}
-
-.lien-joueur {
-    color: #101828;
-    text-decoration: none;
-    font-weight: 600;
-    transition: 0.2s;
-}
-
-.lien-joueur:hover {
-    color: #1683ff;
-}
-
-/* ==========================================
-   HISTORIQUE DU JOUEUR
-   ========================================== */
-
-.historique-joueur {
-    margin-top: 30px;
-}
-
-.historique-header {
-    margin-bottom: 15px;
-}
-
-.historique-header h2 {
-    font-size: 24px;
-    margin-top: 6px;
-}
-
-.historique-tableau {
-    background: white;
-    border: 1px solid #eaecf0;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(16, 24, 40, 0.05);
-}
-
-.historique-ligne {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr 0.7fr 0.8fr 0.8fr;
-    align-items: center;
-    gap: 15px;
-    padding: 18px 22px;
-    border-bottom: 1px solid #eaecf0;
-}
-
-.historique-ligne:last-child {
-    border-bottom: none;
-}
-
-.historique-entete {
-    background: #f9fafb;
-    color: #667085;
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.points-historique {
-    color: #1683ff;
-}
-
-.historique-vide {
-    background: white;
-    border: 1px solid #eaecf0;
-    border-radius: 16px;
-    padding: 40px 20px;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(16, 24, 40, 0.05);
-}
-
-.historique-vide span {
-    font-size: 30px;
-}
-
-.historique-vide h3 {
-    margin-top: 12px;
-    font-size: 20px;
-}
-
-.historique-vide p {
-    margin-top: 7px;
-    color: #667085;
-}
-
-@media (max-width: 700px) {
-
-    .historique-tableau {
-        overflow-x: auto;
-    }
-
-    .historique-ligne {
-        min-width: 650px;
-    }
-
-}
-
-.erreur-formulaire {
-    margin-bottom: 20px;
-    padding: 14px 16px;
-    background: #fff4f2;
-    border: 1px solid #fecdca;
-    border-radius: 8px;
-    color: #b42318;
-    font-size: 14px;
-    font-weight: 600;
-}
-
-.recherche-accueil {
-    max-width: 800px;
-    margin: 20px auto 80px;
-    padding: 45px 30px;
-    text-align: center;
-    background: white;
-    border: 1px solid #eaecf0;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(16, 24, 40, 0.05);
-}
-
-.recherche-accueil h2 {
-    font-size: 30px;
-    margin-top: 8px;
-}
-
-.recherche-accueil > p:not(.sur-titre) {
-    color: #667085;
-    margin-top: 10px;
-    margin-bottom: 25px;
-}
-
-.recherche-accueil form {
-    display: flex;
-    gap: 10px;
-    max-width: 600px;
-    margin: auto;
-}
-
-.recherche-accueil input {
-    flex: 1;
-    padding: 14px 16px;
-    border: 1px solid #d0d5dd;
-    border-radius: 8px;
-    font-size: 15px;
-    outline: none;
-}
-
-.recherche-accueil input:focus {
-    border-color: #1683ff;
-    box-shadow: 0 0 0 3px rgba(22, 131, 255, 0.1);
-}
-
-.recherche-accueil button {
-    padding: 14px 22px;
-    border: none;
-    border-radius: 8px;
-    background: #1683ff;
-    color: white;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.recherche-accueil button:hover {
-    background: #0969da;
-}
-
-@media (max-width: 600px) {
-    .recherche-accueil form {
-        flex-direction: column;
-    }
-}
-.logo img {
-    height: 125px;
-    width: auto;
-    display: block;
-}
-
-/* ==========================================
-   PROFIL JOUEUR
-   ========================================== */
-
-.profil-page {
-    padding: 70px 20px 100px;
-    background: #f8fafc;
-    min-height: calc(100vh - 75px);
-}
-
-.profil-container {
-    max-width: 1100px;
-    margin: auto;
-}
-
-
-/* ==========================================
-   EN-TÊTE
-   ========================================== */
-
-.profil-header {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    margin-bottom: 35px;
-}
-
-.profil-avatar {
-    width: 90px;
-    height: 90px;
-    border-radius: 22px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #1683ff;
-    color: white;
-
-    font-size: 36px;
-    font-weight: 800;
-
-    box-shadow: 0 10px 25px rgba(22, 131, 255, 0.2);
-}
-
-.profil-identite span {
-    font-size: 12px;
-    font-weight: 800;
-    color: #1683ff;
-    letter-spacing: 1px;
-}
-
-.profil-identite h1 {
-    margin: 6px 0;
-    font-size: 40px;
-    color: #101828;
-}
-
-.profil-identite p {
-    margin: 0;
-    color: #667085;
-}
-
-.profil-identite strong {
-    color: #1683ff;
-}
-
-
-/* ==========================================
-   STATISTIQUES
-   ========================================== */
-
-.profil-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-bottom: 30px;
-}
-
-.profil-stat {
-    background: white;
-    border: 1px solid #eaecf0;
-    border-radius: 16px;
-    padding: 24px;
-
-    box-shadow: 0 8px 25px rgba(16, 24, 40, 0.04);
-}
-
-.profil-stat span {
-    display: block;
-    color: #667085;
-    font-size: 14px;
-    margin-bottom: 10px;
-}
-
-.profil-stat strong {
-    font-size: 28px;
-    color: #101828;
-}
-
-.points-positifs {
-    color: #12b76a !important;
-}
-
-
-/* ==========================================
-   CARTES
-   ========================================== */
-
-.graphique-card,
-.historique-joueur {
-    background: white;
-    border: 1px solid #eaecf0;
-    border-radius: 20px;
-    padding: 30px;
-    margin-bottom: 30px;
-
-    box-shadow: 0 8px 25px rgba(16, 24, 40, 0.04);
-}
-
-.section-titre {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-}
-
-.section-titre h2 {
-    margin-top: 7px;
-    font-size: 25px;
-    color: #101828;
-}
-
-
-/* ==========================================
-   GRAPHIQUE
-   ========================================== */
-
-.graphique {
-    height: 280px;
-
-    display: flex;
-    align-items: flex-end;
-    gap: 15px;
-
-    padding: 20px 10px 0;
-
-    border-bottom: 1px solid #eaecf0;
-}
-
-.barre-container {
-    height: 100%;
-    flex: 1;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-
-    min-width: 35px;
-}
-
-.valeur-graphique {
-    font-size: 11px;
-    font-weight: 700;
-    color: #475467;
-    margin-bottom: 7px;
-}
-
-.barre-graphique {
-    width: 70%;
-    height: 60%;
-    min-height: 5px;
-
-    background: #1683ff;
-
-    border-radius: 7px 7px 0 0;
-
-    transition: height 0.4s ease;
-}
-
-.barre-graphique:hover {
-    background: #0969da;
-}
-
-.barre-container small {
-    margin-top: 8px;
-    color: #98a2b3;
-}
-
-.graphique-legende {
-    display: flex;
-    justify-content: space-between;
-
-    margin-top: 15px;
-
-    color: #98a2b3;
-    font-size: 13px;
-}
-
-
-/* ==========================================
-   GRAPHIQUE VIDE
-   ========================================== */
-
-.graphique-vide,
-.historique-vide {
-    text-align: center;
-    padding: 50px 20px;
-}
-
-.graphique-vide > span,
-.historique-vide > span {
-    font-size: 40px;
-}
-
-.graphique-vide h3,
-.historique-vide h3 {
-    margin: 15px 0 8px;
-    color: #101828;
-}
-
-.graphique-vide p,
-.historique-vide p {
-    color: #667085;
-    margin-bottom: 25px;
-}
-
-
-/* ==========================================
-   HISTORIQUE
-   ========================================== */
-
-.historique-tableau {
-    width: 100%;
-    overflow-x: auto;
-}
-
-.historique-ligne {
-    display: grid;
-
-    grid-template-columns:
-        1.4fr
-        0.7fr
-        0.7fr
-        0.7fr
-        0.8fr
-        0.8fr;
-
-    align-items: center;
-
-    padding: 17px 12px;
-
-    border-bottom: 1px solid #f2f4f7;
-
-    min-width: 750px;
-}
-
-.historique-entete {
-    color: #667085;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.historique-ligne strong {
-    color: #101828;
-}
-
-.points-historique {
-    color: #12b76a !important;
-}
-
-
-/* ==========================================
-   BOUTONS
-   ========================================== */
-
-.petit-bouton {
-    text-decoration: none;
-
-    background: #eff8ff;
-    color: #1683ff;
-
-    padding: 10px 15px;
-
-    border-radius: 8px;
-
-    font-size: 13px;
-    font-weight: 700;
-
-    transition: 0.2s;
-}
-
-.petit-bouton:hover {
-    background: #dbeeff;
-}
-
-.retour-classement {
-    margin-top: 10px;
-}
-
-
-/* ==========================================
-   RESPONSIVE
-   ========================================== */
-
-@media (max-width: 850px) {
-
-    .profil-stats {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .profil-identite h1 {
-        font-size: 32px;
-    }
-
-}
-
-
-@media (max-width: 600px) {
-
-    .profil-page {
-        padding: 40px 15px 70px;
-    }
-
-    .profil-header {
-        align-items: flex-start;
-    }
-
-    .profil-avatar {
-        width: 65px;
-        height: 65px;
-        border-radius: 16px;
-        font-size: 25px;
-    }
-
-    .profil-identite h1 {
-        font-size: 25px;
-    }
-
-    .profil-stats {
-        grid-template-columns: 1fr;
-    }
-
-    .graphique-card,
-    .historique-joueur {
-        padding: 20px;
-    }
-
-    .section-titre {
-        align-items: flex-start;
-        gap: 15px;
-        flex-direction: column;
-    }
-
-}
-/* ==========================================
-   GRAPHIQUE DU PROFIL
-   ========================================== */
-
-.carte-graphique {
-    background: white;
-    border: 1px solid #eaecf0;
-    border-radius: 20px;
-    padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 8px 25px rgba(16, 24, 40, 0.04);
-}
-
-.titre-section {
-    margin-bottom: 30px;
-}
-
-.titre-section .sur-titre {
-    margin-bottom: 7px;
-}
-
-.titre-section h2 {
-    margin: 0;
-    font-size: 25px;
-    color: #101828;
-}
-
-
-/* =========================
-   GRAPHIQUE
-========================= */
-
-.graphique {
-    display: flex;
-    height: 360px;
-    margin-top: 10px;
-}
-
-
-/* =========================
-   AXE Y
-========================= */
-
-.axe-y {
-    width: 65px;
-    height: 300px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
-
-    padding-right: 12px;
-
-    color: #98a2b3;
-    font-size: 12px;
-}
-
-
-/* =========================
-   ZONE DU GRAPHIQUE
-========================= */
-
-.zone-graphique {
-    position: relative;
-
-    flex: 1;
-
-    height: 300px;
-
-    border-left: 1px solid #d0d5dd;
-    border-bottom: 1px solid #d0d5dd;
-}
-
-
-/* =========================
-   LIGNES
-========================= */
-
-.lignes-fond {
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.lignes-fond div {
-    width: 100%;
-
-    border-top: 1px dashed #eaecf0;
-}
-
-
-/* =========================
-   BARRES
-========================= */
-
-.barres {
-    position: absolute;
-
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
-    display: flex;
-
-    align-items: flex-end;
-    justify-content: space-around;
-
-    gap: 25px;
-
-    padding: 0 25px;
-}
-
-.barre-container {
-    height: 100%;
-
-    flex: 1;
-
-    max-width: 90px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-
-    position: relative;
-}
-
-.barre {
-    width: 45px;
-
-    min-height: 5px;
-
-    background: #1683ff;
-
-    border-radius: 7px 7px 0 0;
-
-    transition: height 0.6s ease;
-}
-
-.barre:hover {
-    background: #0969da;
-}
-
-
-/* =========================
-   VALEUR
-========================= */
-
-.valeur-barre {
-    position: absolute;
-
-    font-size: 12px;
-    font-weight: 700;
-
-    color: #344054;
-
-    white-space: nowrap;
-
-    transform: translateY(-8px);
-}
-
-
-/* =========================
-   DATE
-========================= */
-
-.date-barre {
-    position: absolute;
-
-    top: calc(100% + 12px);
-
-    font-size: 11px;
-
-    color: #98a2b3;
-
-    white-space: nowrap;
-}
-
-
-/* =========================
-   GRAPHIQUE VIDE
-========================= */
-
-.graphique-vide {
-    text-align: center;
-
-    padding: 60px 20px;
-}
-
-.icone-graphique {
-    font-size: 45px;
-
-    margin-bottom: 15px;
-}
-
-.graphique-vide h3 {
-    margin-bottom: 8px;
-
-    color: #101828;
-}
-
-.graphique-vide p {
-    color: #667085;
-}
-
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 700px) {
-
-    .carte-graphique {
-        padding: 20px;
-    }
-
-    .graphique {
-        height: 320px;
-    }
-
-    .axe-y {
-        width: 50px;
-    }
-
-    .barres {
-        gap: 10px;
-        padding: 0 10px;
-    }
-
-    .barre {
-        width: 30px;
-    }
-
-    .valeur-barre {
-        font-size: 10px;
-    }
-
-    .date-barre {
-        font-size: 9px;
-    }
-
-}
-
-
-/* ==========================================
-   AUTHENTIFICATION
-   ========================================== */
-
-.auth-page {
-    min-height: calc(100vh - 150px);
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    padding: 60px 20px;
-}
-
-.auth-card {
-    width: 100%;
-    max-width: 500px;
-
-    background: white;
-
-    border: 1px solid #eaecf0;
-
-    border-radius: 22px;
-
-    padding: 40px;
-
-    box-shadow: 0 15px 40px rgba(16, 24, 40, 0.08);
-}
-
-.auth-logo {
-    text-align: center;
-
-    margin-bottom: 20px;
-}
-
-.auth-logo img {
-    height: 70px;
-    width: auto;
-}
-
-.auth-header {
-    text-align: center;
-
-    margin-bottom: 30px;
-}
-
-.auth-header h1 {
-    margin: 5px 0 10px;
-
-    font-size: 30px;
-
-    color: #101828;
-}
-
-.auth-header p {
-    color: #667085;
-
-    line-height: 1.6;
-}
-
-.form-row {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 15px;
-}
-
-.form-groupe {
-    margin-bottom: 20px;
-}
-
-.form-groupe label {
-    display: block;
-
-    margin-bottom: 7px;
-
-    font-weight: 600;
-
-    color: #344054;
-}
-
-.form-groupe input {
-    width: 100%;
-
-    padding: 13px 14px;
-
-    border: 1px solid #d0d5dd;
-
-    border-radius: 10px;
-
-    font-size: 15px;
-
-    outline: none;
-
-    transition: 0.2s;
-}
-
-.form-groupe input:focus {
-    border-color: #1683ff;
-
-    box-shadow: 0 0 0 3px rgba(22, 131, 255, 0.12);
-}
-
-.bouton-auth {
-    width: 100%;
-
-    margin-top: 5px;
-}
-
-.message-erreur {
-    background: #fef3f2;
-
-    color: #b42318;
-
-    border: 1px solid #fecdca;
-
-    border-radius: 10px;
-
-    padding: 12px 15px;
-
-    margin-bottom: 20px;
-
-    font-size: 14px;
-}
-
-.auth-footer {
-    text-align: center;
-
-    margin-top: 25px;
-
-    padding-top: 20px;
-
-    border-top: 1px solid #eaecf0;
-}
-
-.auth-footer p {
-    display: inline;
-
-    color: #667085;
-}
-
-.auth-footer a {
-    margin-left: 5px;
-
-    color: #1683ff;
-
-    font-weight: 600;
-
-    text-decoration: none;
-}
-
-
-@media (max-width: 600px) {
-
-    .auth-card {
         padding: 25px 20px;
     }
 
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
-    }
 
-}
+    .details-tournoi {
 
-.message-succes {
-    background: #ecfdf3;
-
-    color: #027a48;
-
-    border: 1px solid #abefc6;
-
-    border-radius: 10px;
-
-    padding: 12px 15px;
-
-    margin-bottom: 20px;
-
-    font-size: 14px;
-}
-
-/* ==========================================
-   ESPACE PERSONNEL
-   ========================================== */
-
-.compte-page {
-    min-height: calc(100vh - 150px);
-
-    padding: 60px 20px;
-}
-
-.compte-container {
-    max-width: 950px;
-
-    margin: auto;
-}
-
-.compte-header {
-    display: flex;
-
-    align-items: center;
-
-    gap: 25px;
-
-    margin-bottom: 35px;
-}
-
-.compte-avatar {
-    width: 85px;
-    height: 85px;
-
-    border-radius: 50%;
-
-    background: #1683ff;
-
-    color: white;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    font-size: 32px;
-    font-weight: 700;
-}
-
-.compte-header h1 {
-    margin: 5px 0 8px;
-
-    font-size: 32px;
-
-    color: #101828;
-}
-
-.compte-header p {
-    color: #667085;
-}
-
-.compte-card {
-    background: white;
-
-    border: 1px solid #eaecf0;
-
-    border-radius: 20px;
-
-    padding: 30px;
-
-    box-shadow: 0 8px 25px rgba(16, 24, 40, 0.04);
-}
-
-.compte-card h2 {
-    margin-bottom: 25px;
-
-    color: #101828;
-}
-
-.infos-compte {
-    display: grid;
-
-    grid-template-columns: 1fr 1fr;
-
-    gap: 25px;
-}
-
-.infos-compte div {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 6px;
-}
-
-.infos-compte span {
-    font-size: 13px;
-
-    color: #98a2b3;
-}
-
-.infos-compte strong {
-    color: #344054;
-
-    font-size: 16px;
-}
-
-.compte-actions {
-    display: flex;
-
-    gap: 15px;
-
-    margin-top: 25px;
-}
-
-@media (max-width: 650px) {
-
-    .compte-header {
-        align-items: flex-start;
-    }
-
-    .infos-compte {
         grid-template-columns: 1fr;
     }
 
-    .compte-actions {
-        flex-direction: column;
+
+    .detail {
+
+        border-right: none;
+
+        border-bottom: 1px solid #eaecf0;
     }
 
-}
 
-.connexion {
-    text-decoration: none !important;
-}
+    .detail:last-child {
 
-.connexion:hover {
-    text-decoration: none !important;
+        border-bottom: none;
+    }
+
+
+    .points-resultat {
+
+        font-size: 50px;
+    }
+
 }

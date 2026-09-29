@@ -8,233 +8,161 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Résultat - PadelRank</title>
-    <link rel="icon" type="image/png"
-      href="{{ url_for('static', filename='images/logo1.png') }}">
 
-    <link rel="stylesheet"
-          href="{{ url_for('static', filename='css/style.css') }}">
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ url_for('static', filename='images/logo1.png') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
 
 </head>
 
 
 <body>
 
-    <!-- ========================= -->
-    <!-- BARRE DE NAVIGATION -->
-    <!-- ========================= -->
 
-    <header class="navbar">
+<header class="navbar">
 
-        <div class="logo">
-            Padel<span>Rank</span>
+    <a href="/" class="logo">
+
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="PadelRank"
+        >
+
+    </a>
+
+</header>
+
+
+
+<main class="resultat-page">
+
+    <div class="resultat-container">
+
+
+        <p class="sur-titre">
+            RÉSULTAT
+        </p>
+
+
+        <h1>
+            Tu vas gagner
+        </h1>
+
+
+        <div class="resultat-card">
+
+            <span class="resultat-label">
+                Points FFT gagnés
+            </span>
+
+            <strong class="points-resultat">
+                +{{ points }}
+            </strong>
+
+            <span class="resultat-description">
+                points
+            </span>
+
         </div>
 
-        <nav>
-
-            <a href="/">
-                Accueil
-            </a>
-
-            <a href="/simulation">
-                Simulateur
-            </a>
-
-            <a href="/classement">Classement</a>
-
-            <a href="#">
-                À propos
-            </a>
-
-        </nav>
-
-        {% if session.get("utilisateur_id") %}
-
-<a href="/mon-compte" class="connexion">
-     {{ session.get("utilisateur_nom") }}
-</a>
-
-{% else %}
-
-<a href="/connexion" class="connexion">
-    Se connecter
-</a>
-
-{% endif %}
-
-    </header>
 
 
-    <!-- ========================= -->
-    <!-- PAGE RÉSULTAT -->
-    <!-- ========================= -->
+        <div class="details-tournoi">
 
-    <main class="resultat-page">
+            <div class="detail">
 
-        <div class="resultat-container">
+                <span>
+                    Tournoi
+                </span>
 
-
-            <p class="sur-titre">🎾 RÉSULTAT DE TA SIMULATION</p>
-
-            <h1>
-                {{ joueur["prenom"] }} {{ joueur["nom"] }}
-            </h1>
-
-            <p class="resultat-intro">
-                Ton tournoi est simulé ! Voici l'évolution de tes points.
-            </p>
-
-
-            <!-- ========================= -->
-            <!-- CARTE PRINCIPALE -->
-            <!-- ========================= -->
-
-            <div class="resultat-card">
-
-
-                <div class="resultat-ancien">
-
-                    <span>
-                        Points actuels
-                    </span>
-
-                    <strong>
-                        {{ points|int }}
-                    </strong>
-
-                </div>
-
-
-                <div class="fleche-resultat">
-                    →
-                </div>
-
-
-                <div class="resultat-total">
-
-                    <span>
-                        Nouveau total
-                    </span>
-
-                    <strong>
-                        {{ nouveau_total|int }}
-                    </strong>
-
-                </div>
-
-
-                <!-- ========================= -->
-                <!-- POINTS GAGNÉS -->
-                <!-- ========================= -->
-
-                <div class="points-gagnes">
-
-                    <span>
-                        Points gagnés
-                    </span>
-
-                    <strong>
-                        +{{ points_gagnes }}
-                    </strong>
-
-                </div>
-
+                <strong>
+                    {{ niveau }}
+                </strong>
 
             </div>
 
 
-            <!-- ========================= -->
-            <!-- DÉTAILS DU TOURNOI -->
-            <!-- ========================= -->
+            <div class="detail">
 
-            <div class="details-tournoi">
+                <span>
+                    Nombre de paires
+                </span>
 
+                <strong>
+                    {{ nombre_paires }}
+                </strong>
 
-                <div class="detail">
-
-                    <span>
-                        Tournoi
-                    </span>
-
-                    <strong>
-                        {{ niveau }}
-                    </strong>
-
-                </div>
+            </div>
 
 
-                <div class="detail">
+            <div class="detail">
 
-                    <span>
-                        Paires
-                    </span>
+                <span>
+                    Place
+                </span>
 
-                    <strong>
-                        {{ paires }}
-                    </strong>
+                <strong>
+                    {{ place }}{% if place == 1 %}er{% else %}e{% endif %}
+                </strong>
 
-                </div>
-
-
-                <div class="detail">
-
-                    <span>
-                        Place
-                    </span>
-
-                    <strong>
-                        {{ place }}e
-                    </strong>
-
-                </div>
+            </div>
 
 
-                {% if sexe %}
+        </div>
 
-                <div class="detail">
 
-                    <span>
-                        Épreuve
-                    </span>
 
-                    <strong>
-                        {{ sexe|capitalize }}
-                    </strong>
+        {% if sexe %}
 
-                </div>
+        <div class="epreuve-resultat">
 
+            Épreuve :
+            <strong>
+                {% if sexe == "messieurs" %}
+                    Messieurs
+                {% else %}
+                    Dames
                 {% endif %}
-
-
-            </div>
-
-
-            <!-- ========================= -->
-            <!-- BOUTONS -->
-            <!-- ========================= -->
-
-            <div class="resultat-actions">
-
-                <a
-                    href="/simulation"
-                    class="bouton-principal"
-                >
-                    Nouvelle simulation
-                </a>
-
-
-                <a
-                    href="/"
-                    class="bouton-secondaire"
-                >
-                    Retour à l'accueil
-                </a>
-
-            </div>
-
+            </strong>
 
         </div>
 
-    </main>
+        {% endif %}
+
+
+
+        <div class="resultat-actions">
+
+            <a
+                href="/"
+                class="bouton-principal"
+            >
+                Nouveau calcul
+            </a>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        © 2026 PadelRank — Simulateur de points FFT
+    </p>
+
+</footer>
 
 
 </body>

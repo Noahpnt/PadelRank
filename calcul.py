@@ -1,15 +1,12 @@
 # ============================================================
-# PADEL RANK
-# Barème FFT Padel - Saison 2026/2027
+# PADELRANK
+# Simulateur de points FFT - Saison 2026/2027
 # ============================================================
 
 
 # ============================================================
 # P25 à P250
 # Le nombre de paires intervient
-#
-# Colonnes :
-# 4-8 / 9-12 / 13-16 / 17-20 / 21-24 / 25-28 / 29+
 # ============================================================
 
 BAREME_PAR_NOMBRE_PAIRES = {
@@ -25,17 +22,17 @@ BAREME_PAR_NOMBRE_PAIRES = {
     },
 
     "P50": {
-        "4-8":  [50, 40, 30, 20, 13, 5, 3, 1],
+        "4-8": [50, 40, 30, 20, 13, 5, 3, 1],
         "9-12": [50, 40, 33, 28, 20, 15, 10, 5, 3, 2, 1, 1],
         "13-16": [50, 40, 35, 30, 25, 23, 20, 15, 13, 11, 9, 8, 5, 3, 2, 1],
         "17-20": [50, 43, 38, 35, 30, 28, 25, 23, 18, 15, 13, 12, 10, 9, 8, 6, 5, 3, 2, 1],
-        "21-24": [50, 43, 38, 35, 30, 28, 25, 23, 19, 18, 17, 16, 15, 14, 13, 12, 10, 9, 8, 6, 5, 3, 2, 1],
-        "25-28": [50, 43, 38, 35, 30, 28, 25, 23, 19, 18, 17, 16, 15, 14, 13, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 2, 1, 1],
+        "21-24": [50, 43, 38, 35, 30, 28, 19, 18, 17, 16, 15, 14, 13, 12, 10, 9, 8, 6, 5, 3, 2, 1],
+        "25-28": [50, 43, 38, 35, 30, 28, 19, 18, 17, 16, 15, 14, 13, 12, 10, 9, 8, 7, 6, 5, 4, 3, 2, 2, 1, 1],
         "29+": [50, 43, 38, 35, 30, 29, 28, 27, 23, 22, 21, 20, 19, 18, 17, 16, 14, 13, 13, 12, 12, 11, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
     },
 
     "P100": {
-        "4-8":  [100, 80, 60, 40, 25, 10, 5, 1],
+        "4-8": [100, 80, 60, 40, 25, 10, 5, 1],
         "9-12": [100, 80, 65, 55, 40, 30, 20, 10, 5, 3, 2, 1],
         "13-16": [100, 80, 70, 60, 50, 45, 40, 30, 25, 21, 18, 15, 10, 5, 3, 1],
         "17-20": [100, 85, 75, 70, 60, 55, 50, 45, 35, 30, 25, 23, 20, 18, 15, 12, 10, 5, 2, 1],
@@ -45,7 +42,7 @@ BAREME_PAR_NOMBRE_PAIRES = {
     },
 
     "P250": {
-        "4-8":  [250, 200, 150, 100, 63, 25, 13, 3],
+        "4-8": [250, 200, 150, 100, 63, 25, 13, 3],
         "9-12": [250, 200, 165, 140, 100, 75, 50, 25, 13, 8, 5, 3],
         "13-16": [250, 200, 175, 150, 125, 115, 100, 75, 63, 53, 45, 38, 25, 13, 8, 3],
         "17-20": [250, 213, 188, 175, 150, 138, 125, 113, 88, 75, 63, 58, 50, 45, 38, 30, 25, 13, 8, 3],
@@ -123,7 +120,7 @@ BAREME_P3000 = [
 
 
 # ============================================================
-# Déterminer la tranche de nombre de paires
+# TRANCHE DU NOMBRE DE PAIRES
 # ============================================================
 
 def obtenir_tranche(nombre_paires):
@@ -131,40 +128,36 @@ def obtenir_tranche(nombre_paires):
     if 4 <= nombre_paires <= 8:
         return "4-8"
 
-    elif 9 <= nombre_paires <= 12:
+    if 9 <= nombre_paires <= 12:
         return "9-12"
 
-    elif 13 <= nombre_paires <= 16:
+    if 13 <= nombre_paires <= 16:
         return "13-16"
 
-    elif 17 <= nombre_paires <= 20:
+    if 17 <= nombre_paires <= 20:
         return "17-20"
 
-    elif 21 <= nombre_paires <= 24:
+    if 21 <= nombre_paires <= 24:
         return "21-24"
 
-    elif 25 <= nombre_paires <= 28:
+    if 25 <= nombre_paires <= 28:
         return "25-28"
 
-    elif nombre_paires >= 29:
+    if nombre_paires >= 29:
         return "29+"
 
-    else:
-        return None
+    return None
 
 
 # ============================================================
-# Calcul des points
+# CALCUL DES POINTS
 # ============================================================
 
 def calculer_points(niveau, nombre_paires, place, sexe=None):
 
     niveau = niveau.upper()
 
-    # -------------------------
     # P25 à P250
-    # -------------------------
-
     if niveau in BAREME_PAR_NOMBRE_PAIRES:
 
         tranche = obtenir_tranche(nombre_paires)
@@ -179,182 +172,64 @@ def calculer_points(niveau, nombre_paires, place, sexe=None):
 
         return tableau[place - 1]
 
-
-    # -------------------------
     # P500
-    # -------------------------
-
-    elif niveau == "P500":
+    if niveau == "P500":
 
         if sexe is None:
             return None
 
-        sexe = sexe.lower()
+        tableau = BAREME_P500.get(sexe.lower())
 
-        if sexe not in BAREME_P500:
+        if tableau is None:
             return None
-
-        tableau = BAREME_P500[sexe]
 
         if place < 1:
             return None
 
-        if place >= len(tableau):
+        if place > len(tableau):
             return tableau[-1]
 
         return tableau[place - 1]
 
-
-    # -------------------------
     # P1000
-    # -------------------------
-
-    elif niveau == "P1000":
+    if niveau == "P1000":
 
         if sexe is None:
             return None
 
-        sexe = sexe.lower()
+        tableau = BAREME_P1000.get(sexe.lower())
 
-        if sexe not in BAREME_P1000:
+        if tableau is None:
             return None
-
-        tableau = BAREME_P1000[sexe]
 
         if place < 1:
             return None
 
-        if place >= len(tableau):
+        if place > len(tableau):
             return tableau[-1]
 
         return tableau[place - 1]
 
-
-    # -------------------------
     # P2000
-    # -------------------------
-
-    elif niveau == "P2000":
+    if niveau == "P2000":
 
         if place < 1:
             return None
 
-        if place >= len(BAREME_P2000):
+        if place > len(BAREME_P2000):
             return BAREME_P2000[-1]
 
         return BAREME_P2000[place - 1]
 
-
-    # -------------------------
     # P3000
-    # -------------------------
-
-    elif niveau == "P3000":
+    if niveau == "P3000":
 
         if place < 1:
             return None
 
-        if place >= len(BAREME_P3000):
+        if place > len(BAREME_P3000):
             return BAREME_P3000[-1]
 
         return BAREME_P3000[place - 1]
 
-
     return None
-
-
-# ============================================================
-# Interface de test
-# ============================================================
-
-def lancer_simulation():
-
-    print()
-    print("======================================")
-    print("          PADEL RANK")
-    print("      SIMULATEUR DE POINTS FFT")
-    print("======================================")
-    print()
-
-    try:
-
-        points_actuels = float(
-            input("Combien de points FFT as-tu actuellement ? ")
-        )
-
-        niveau = input(
-            "Niveau du tournoi (P25/P50/P100/P250/P500/P1000/P2000/P3000) : "
-        ).strip()
-
-        nombre_paires = int(
-            input("Combien de paires participent au tournoi ? ")
-        )
-
-        place = int(
-            input("Quelle place as-tu obtenue ? ")
-        )
-
-        sexe = None
-
-        if niveau.upper() in ["P500", "P1000"]:
-
-            sexe = input(
-                "Épreuve messieurs ou dames ? "
-            ).strip().lower()
-
-            if sexe not in ["messieurs", "dames"]:
-                print()
-                print("Erreur : écris 'messieurs' ou 'dames'.")
-                return
-
-        points_gagnes = calculer_points(
-            niveau,
-            nombre_paires,
-            place,
-            sexe
-        )
-
-        if points_gagnes is None:
-
-            print()
-            print("======================================")
-            print(" Impossible de calculer les points.")
-            print(" Vérifie les informations saisies.")
-            print("======================================")
-            return
-
-        nouveau_total = points_actuels + points_gagnes
-
-        print()
-        print("======================================")
-        print("             RÉSULTAT")
-        print("======================================")
-        print()
-
-        print("Points actuels :", points_actuels)
-        print("Tournoi :", niveau.upper())
-        print("Nombre de paires :", nombre_paires)
-        print("Place :", place)
-
-        if sexe is not None:
-            print("Épreuve :", sexe)
-
-        print()
-        print("Points gagnés :", points_gagnes)
-        print("Nouveau total simulé :", nouveau_total)
-
-        print()
-        print("======================================")
-
-    except ValueError:
-
-        print()
-        print("Erreur : tu dois entrer des nombres valides.")
-
-
-# ============================================================
-# Lancement
-# ============================================================
-
-if __name__ == "__main__":
-    lancer_simulation()
