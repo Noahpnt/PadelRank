@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Résultat - PadelRank</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ url_for('static', filename='images/logo1.png') }}"
+    >
+
+    <!-- Installation sur l'écran d'accueil (iPhone et Android) -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="PadelRank">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#ffffff">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <a href="/" class="logo">
+
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="PadelRank"
+        >
+
+    </a>
+
+</header>
+
+
+
+<main class="resultat-page">
+
+    <div class="resultat-container">
+
+
+        <p class="sur-titre">
+            RÉSULTAT
+        </p>
+
+
+        <h1>
+            Tu vas gagner
+        </h1>
+
+
+        <div class="resultat-card">
+
+            <span class="resultat-label">
+                Points FFT gagnés
+            </span>
+
+            <strong class="points-resultat">
+                +{{ points }}
+            </strong>
+
+            <span class="resultat-description">
+                points
+            </span>
+
+        </div>
+
+
+
+        <div class="details-tournoi">
+
+            <div class="detail">
+
+                <span>
+                    Tournoi
+                </span>
+
+                <strong>
+                    {{ niveau }}
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Nombre de paires
+                </span>
+
+                <strong>
+                    {{ nombre_paires }}
+                </strong>
+
+            </div>
+
+
+            <div class="detail">
+
+                <span>
+                    Place
+                </span>
+
+                <strong>
+                    {{ place }}{% if place == 1 %}er{% else %}e{% endif %}
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        {% if sexe %}
+
+        <div class="epreuve-resultat">
+
+            Épreuve :
+            <strong>
+                {% if sexe == "messieurs" %}
+                    Messieurs
+                {% else %}
+                    Dames
+                {% endif %}
+            </strong>
+
+        </div>
+
+        {% endif %}
+
+
+
+        <div class="resultat-actions">
+
+            <a
+                href="/"
+                class="bouton-principal"
+            >
+                Nouveau calcul
+            </a>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        © 2026 PadelRank — Simulateur de points FFT
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>

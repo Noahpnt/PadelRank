@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PadelRank - Simulateur de points FFT</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ url_for('static', filename='images/logo1.png') }}"
+    >
+
+    <!-- Installation sur l'écran d'accueil (iPhone et Android) -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/apple-touch-icon.png') }}">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="PadelRank">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#ffffff">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+
+<header class="navbar">
+
+    <a href="/" class="logo">
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="PadelRank"
+        >
+    </a>
+
+</header>
+
+
+
+<main class="simulation-page">
+
+    <div class="simulation-container">
+
+
+        <div class="simulation-title">
+
+            <p class="sur-titre">
+                PADELRANK
+            </p>
+
+            <h1>
+                Simulateur de points FFT
+            </h1>
+
+            <p>
+                Indique ton résultat au tournoi pour connaître
+                le nombre de points que tu vas gagner.
+            </p>
+
+        </div>
+
+
+        {% if erreur %}
+
+        <div class="erreur-formulaire">
+            {{ erreur }}
+        </div>
+
+        {% endif %}
+
+
+
+        <form
+            method="POST"
+            action="/simulation"
+            class="form-card"
+        >
+
+
+            <div class="form-group">
+
+                <label for="niveau">
+                    Niveau du tournoi
+                </label>
+
+                <select
+                    name="niveau"
+                    id="niveau"
+                    required
+                >
+
+                    <option value="">
+                        Sélectionne un niveau
+                    </option>
+
+                    <option value="P25">
+                        P25
+                    </option>
+
+                    <option value="P50">
+                        P50
+                    </option>
+
+                    <option value="P100">
+                        P100
+                    </option>
+
+                    <option value="P250">
+                        P250
+                    </option>
+
+                    <option value="P500">
+                        P500
+                    </option>
+
+                    <option value="P1000">
+                        P1000
+                    </option>
+
+                    <option value="P2000">
+                        P2000
+                    </option>
+
+                    <option value="P3000">
+                        P3000
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div
+                class="form-group"
+                id="sexe-container"
+                style="display: none;"
+            >
+
+                <label for="sexe">
+                    Épreuve
+                </label>
+
+                <select
+                    name="sexe"
+                    id="sexe"
+                >
+
+                    <option value="">
+                        Sélectionne une épreuve
+                    </option>
+
+                    <option value="messieurs">
+                        Messieurs
+                    </option>
+
+                    <option value="dames">
+                        Dames
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="nombre_paires">
+                    Nombre de paires
+                </label>
+
+                <input
+                    type="number"
+                    name="nombre_paires"
+                    id="nombre_paires"
+                    min="4"
+                    placeholder="Exemple : 16"
+                    required
+                >
+
+                <small>
+                    Minimum : 4 paires
+                </small>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="place">
+                    Place obtenue
+                </label>
+
+                <input
+                    type="number"
+                    name="place"
+                    id="place"
+                    min="1"
+                    placeholder="Exemple : 3"
+                    required
+                >
+
+            </div>
+
+
+
+            <button
+                type="submit"
+                class="bouton-calcul"
+            >
+                Calculer mes points
+            </button>
+
+
+        </form>
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+    <p>
+        © 2026 PadelRank — Simulateur de points FFT
+    </p>
+
+</footer>
+
+
+
+<script>
+
+const niveau = document.getElementById("niveau");
+const sexeContainer = document.getElementById("sexe-container");
+const sexe = document.getElementById("sexe");
+
+niveau.addEventListener("change", function () {
+
+    if (
+        niveau.value === "P500" ||
+        niveau.value === "P1000"
+    ) {
+
+        sexeContainer.style.display = "block";
+        sexe.required = true;
+
+    } else {
+
+        sexeContainer.style.display = "none";
+        sexe.required = false;
+        sexe.value = "";
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>
